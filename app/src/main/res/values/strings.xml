@@ -4,5 +4,7 @@
     <string name="app_name">Depends On</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="depends">Depends</string>
+    <string name="triggers">Triggers</string>
 
 </resources>

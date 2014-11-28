@@ -2,12 +2,11 @@ package com.clangpp.depends_on;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -15,22 +14,25 @@ import android.widget.ListView;
  */
 public class ChecklistFragment extends Fragment {
 
-    ListView checklistView;
-    ListAdapter checklistAdapter;
+    private RecyclerView mChecklistView;
+    private RecyclerView.Adapter mChecklistAdapter;
+    private RecyclerView.LayoutManager mChecklistLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        checklistView = (ListView) rootView.findViewById(R.id.listview_checklist);
+        mChecklistView = (RecyclerView) rootView.findViewById(R.id.checklist_view);
 
-        // TODO(clangpp): Replaces this to real adapter.
+        mChecklistLayoutManager = new LinearLayoutManager(getActivity());
+        mChecklistView.setLayoutManager(mChecklistLayoutManager);
+
+        // TODO(clangpp): Replaces this with real data.
         String[] dummyValues = new String[]{"item 1", "item 2", "item 3"};
-        checklistAdapter = new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_list_item_1, dummyValues);
 
-        checklistView.setAdapter(checklistAdapter);
+        mChecklistAdapter = new ChecklistAdapter(dummyValues);
+        mChecklistView.setAdapter(mChecklistAdapter);
 
         return rootView;
     }
